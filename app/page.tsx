@@ -1,3 +1,4 @@
+import ButtomBar from "@/components/bar/ButtomBar";
 import SideBar from "@/components/bar/SideBar";
 import TopBar from "@/components/bar/TopBar";
 
@@ -7,6 +8,7 @@ export default function Home() {
       {/* Top Bar */}
       <TopBar />
       <SideBar/>
+      <ButtomBar/>
     </div>
   );
 }
