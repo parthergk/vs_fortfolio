@@ -1,10 +1,12 @@
-import TopBar from "@/components/TopBar";
+import SideBar from "@/components/bar/SideBar";
+import TopBar from "@/components/bar/TopBar";
 
 export default function Home() {
   return (
-    <div className="h-screen w-full bg-customBlack text-gray-300 flex flex-col">
+    <div className="h-screen w-full bg-customBlack text-neutral-300 flex flex-col">
       {/* Top Bar */}
-      <TopBar/>
-      </div>
+      <TopBar />
+      <SideBar/>
+    </div>
   );
 }
