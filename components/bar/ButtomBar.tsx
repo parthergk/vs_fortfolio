@@ -19,17 +19,16 @@ const ButtomBar = () => {
       </div>
 
       <div className="flex space-x-4 justify-center items-center px-3 ">
-  {[
-    { icon: Braces, label: "TypeScript JSX" },
-    { icon: CheckCheck, label: "Prettier" },
-  ].map(({ icon: Icon, label }, index) => (
-    <div key={index} className="flex items-center space-x-2">
-      <Icon className="w-4 h-4" />
-      <span className="font-thin text-xs">{label}</span>
-    </div>
-  ))}
-</div>
-
+        {[
+          { icon: Braces, label: "TypeScript JSX" },
+          { icon: CheckCheck, label: "Prettier" },
+        ].map(({ icon: Icon, label }, index) => (
+          <div key={index} className="flex items-center space-x-2">
+            <Icon className="w-4 h-4" />
+            <span className="font-thin text-xs">{label}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
