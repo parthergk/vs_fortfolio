@@ -7,7 +7,7 @@ import React, { useState } from "react";
 const tabs = [
   { id: "explore", icon: Files },
   {
-    id: "sourceControl",
+    id: "source Control",
     icon: () => (
       <svg
         className="w-[27px] h-[27px]"

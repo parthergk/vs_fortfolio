@@ -1,7 +1,7 @@
 import { Braces, CheckCheck } from "lucide-react";
 import React from "react";
 
-const ButtomBar = () => {
+const BottomBar = () => {
   return (
     <div className=" w-full h-6 flex justify-between items-center border-t border-neutral-800">
       <div className=" px-10 flex justify-center items-center space-x-2">
@@ -33,4 +33,4 @@ const ButtomBar = () => {
   );
 };
 
-export default ButtomBar;
+export default BottomBar;
