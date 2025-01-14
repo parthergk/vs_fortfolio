@@ -1,5 +1,5 @@
 "use client";
-import ButtomBar from "@/components/bar/ButtomBar";
+import BottomBar from "@/components/bar/BottomBar";
 import ActivityBar from "@/components/bar/ActivityBar";
 import TopBar from "@/components/bar/TopBar";
 import SideBar from "@/components/bar/SideBar";
@@ -19,8 +19,8 @@ export default function Home() {
           <SideBar />
         </div>
 
-        {/*Buttom Bar */}
-        <ButtomBar />
+        {/*Bottom Bar */}
+        <BottomBar />
       </div>
     </SideBarProvider>
   );
