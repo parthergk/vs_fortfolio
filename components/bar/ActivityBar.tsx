@@ -2,9 +2,15 @@
 
 import { useSideBarContext } from "@/context/SideBarProvider";
 import { Blocks, CircleUserRound, Files, Settings } from "lucide-react";
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import DevCard from "../DevCard";
 
-const tabs = [
+interface Tab {
+  id: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+}
+
+const tabs: Tab[] = [
   { id: "explore", icon: Files },
   {
     id: "source Control",
@@ -24,21 +30,52 @@ const tabs = [
   { id: "extension", icon: Blocks },
 ];
 
-const ActivityBar = () => {
+const ActivityBar: React.FC = () => {
   const itemContext = useSideBarContext();
 
-  function handleclick(id: string) {
+  const [showDevCard, setShowDevCard] = useState(false); // State to track visibility
+  const devCardRef = useRef<HTMLDivElement | null>(null);  // Ref for DevCard
+  const circleButtonRef = useRef<SVGSVGElement | null>(null);  // Ref for CircleUserRound button
+
+  const toggleDevCard = () => {
+    setShowDevCard((prev) => !prev); // Toggle the visibility of the DevCard
+  };
+
+  useEffect(() => {
+    // Function to handle click outside the DevCard and button
+    const handleClickOutside = (event: MouseEvent) => {
+      // If the click is outside of the DevCard and CircleUserRound button, hide the card
+      if (
+        devCardRef.current &&
+        !devCardRef.current.contains(event.target as Node) &&
+        circleButtonRef.current &&
+        !circleButtonRef.current.contains(event.target as Node)
+      ) {
+        setShowDevCard(false);
+      }
+    };
+
+    // Add event listener for clicks outside
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []); // Empty dependency array ensures it runs only on mount and unmount
+
+  function handleClick(id: string) {
     if (id === itemContext.sideBarItem) {
-      itemContext.setSideOpen((pre)=>!pre)
-    }else{
+      itemContext.setSideOpen((prev) => !prev);
+    } else {
       itemContext.setSideBarItem(id);
-      itemContext.setSideOpen(true)
-    } 
+      itemContext.setSideOpen(true);
+    }
   }
 
   return (
     <div className="w-12 h-full flex flex-col items-center justify-between space-y-2 border-r border-neutral-800">
-      <div className=" w-full">
+      <div className="w-full">
         {tabs.map(({ id, icon: Icon }) => (
           <div
             key={id}
@@ -47,16 +84,23 @@ const ActivityBar = () => {
                 ? "border-l-2 text-white"
                 : "border-0"
             } border-blue-600 text-neutral-500 hover:text-white cursor-pointer`}
-            onClick={() => handleclick(id)}
+            onClick={() => handleClick(id)}
           >
             <Icon className="w-6 h-6" />
           </div>
         ))}
       </div>
 
-      <div className="w-full py-4 space-y-6 flex flex-col justify-center items-center ">
-        <CircleUserRound className="w-6 h-6 text-neutral-500 hover:text-white cursor-pointer" />
+      <div className="w-full py-4 space-y-6 flex flex-col justify-center items-center">
+        <CircleUserRound
+          ref={circleButtonRef}  // Add ref to the CircleUserRound button
+          className="w-6 h-6 text-neutral-500 hover:text-white cursor-pointer"
+          onClick={toggleDevCard}  // Toggle DevCard visibility on click
+        />
         <Settings className="w-6 h-6 text-neutral-500 hover:text-white cursor-pointer" />
+
+        {/* Conditionally render the DevCard based on the state */}
+        {showDevCard && <DevCard devref={devCardRef} />}
       </div>
     </div>
   );
