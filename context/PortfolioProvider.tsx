@@ -1,3 +1,4 @@
+"use client"
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
 interface portfolioItemInter {
@@ -12,7 +13,7 @@ interface providerProInter{
 const PortfolioContext = createContext<portfolioItemInter | undefined>(undefined);
 
 export const PortfolioProvider: React.FC<providerProInter> = ({children})=>{
-    const [portfolioItem, setPortfolioItem] = useState<string>("home");
+    const [portfolioItem, setPortfolioItem] = useState<string>("home.html");
 
     return(
     <PortfolioContext.Provider value={{portfolioItem, setPortfolioItem}}>

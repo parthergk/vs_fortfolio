@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { PortfolioProvider } from "@/context/PortfolioProvider";
 
 export const metadata: Metadata = {
   title: "Gaurav Kumar | Developer Portfolio",
@@ -19,7 +20,9 @@ export default function RootLayout({
           fontFamily: "Consolas, 'Courier New', monospace",
         }}
       >
+        <PortfolioProvider>
         {children}
+        </PortfolioProvider>
       </body>
     </html>
   );

@@ -5,8 +5,19 @@ import TopBar from "@/components/bar/TopBar";
 import SideBar from "@/components/bar/SideBar";
 import { SideBarProvider } from "@/context/SideBarProvider";
 import MainHome from "@/components/portfolio/MainHome";
+import { usePortContext } from "@/context/PortfolioProvider";
+import Project from "@/components/portfolio/Project";
+import About from "@/components/portfolio/About";
 
 export default function Home() {
+  const portContext = usePortContext();
+  const items = [
+    {name: 'home', component: <MainHome/>},
+    {name: 'project', component: <Project/>},
+    {name: 'about', component: <About/>},
+  ]
+
+  const activeComp = items.find((item)=> item.name === portContext.portfolioItem.split('.')[0])
 
   return (
     <SideBarProvider>
@@ -18,7 +29,7 @@ export default function Home() {
         <div className=" flex h-full">
           <ActivityBar />
           <SideBar />
-          <MainHome/>
+          {activeComp?.component}
         </div>
 
         {/*Bottom Bar */}
