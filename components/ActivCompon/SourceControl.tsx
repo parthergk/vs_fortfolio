@@ -13,7 +13,7 @@ interface Project {
 
 const SourceControl: React.FC<MyComponentProps> = ({ folderName }) => {
   const [input, setInput] = useState<string>("");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const [ongoingProjects, setOngoingProjects] = useState<Project[]>([
     { name: "thumbnail", icon: "/image/icons/react_icon.svg" },
@@ -49,126 +49,88 @@ const SourceControl: React.FC<MyComponentProps> = ({ folderName }) => {
     setCompletedProjects([...completedProjects, project]);
   };
 
-  // UI remains unchanged
-
-
   return (
-    <div className="flex flex-col space-y-1">
+    <div className="flex flex-col space-y-3">
       {/* Toggle Header */}
-      <div
-        className="cursor-pointer flex items-center gap-1"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <span>
-          {isOpen ? (
-            <ChevronRight className="w-[18px] h-[18px]" />
-          ) : (
-            <ChevronDown className="w-[18px] h-[18px]" />
-          )}
-        </span>
-        <span className="text-sm font-bold">{folderName}</span>
-      </div>
+            <div
+              className="cursor-pointer flex items-center gap-1"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <span>
+                {isOpen ? (
+                  <ChevronDown className="w-[18px] h-[18px]" />
+                ):(
+                  <ChevronRight className="w-[18px] h-[18px]" />
+                )}
+              </span>
+              <span className="text-sm font-bold">{folderName}</span>
+            </div>
 
-      {
-        isOpen ? null :
-      <div className="flex flex-col pl-5 pr-1 space-y-2">
-        <input
-          type="text"
-          placeholder="Add new project..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="bg-neutral-700 placeholder-neutral-500 placeholder:font-bold placeholder:text-sm outline-none px-1 border border-neutral-700 focus:border-blue-600 focus:border-1 rounded-sm"
-        />
-        <button
-          onClick={handleAdd}
-          className="font-medium bg-blue-500 outline-none rounded-sm h-7 flex justify-center items-center"
-        >
-          <Check className="h-5 w-5" />
-          Add
-        </button>
-
-        {/* Ongoing Projects */}
-        <div>
-          <div className="cursor-pointer flex items-center gap-1">
-            <ChevronDown className="w-[18px] h-[18px]" />
-            <span className="text-sm font-bold">On Going</span>
+      {/* Content */}
+      {isOpen && (
+        <div className="flex flex-col pl-4 pr-2 space-y-4">
+          {/* Add New Project */}
+          
+          <div className="flex flex-col px-1 gap-2">
+            <input
+              type="text"
+              placeholder="Add new project..."
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              className="bg-neutral-700 text-gray-200 placeholder-gray-400 text-sm px-2 py-1 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              onClick={handleAdd}
+              className="flex items-center justify-center gap-1 bg-blue-600 text-white text-sm px-2 py-1 rounded-sm hover:bg-blue-500"
+            >
+              <Check className="h-4 w-4" />
+              Add
+            </button>
           </div>
-          <div className="pl-5 space-y-1">
-            {ongoingProjects.map((project) => (
-              <div
-                key={project.name}
-                className="flex items-center gap-1 hover:bg-neutral-800 p-1 rounded cursor-pointer"
-              >
-                <Image alt={project.name} src={project.icon} height={16} width={16} />
-                <span
-                  className="text-sm truncate max-w-[150px] hover:overflow-visible hover:whitespace-normal"
-                  title={project.name}
-                >
-                  {project.name}.tsx
-                </span>
-                <Plus
-                  className="w-[16px] h-[16px] text-gray-400 hover:text-gray-200 ml-auto"
-                  onClick={() => moveToPending(project)}
-                />
+
+          {/* Project Lists */}
+          {[
+            { title: "On Going", projects: ongoingProjects, onAction: moveToPending },
+            { title: "Pending", projects: pendingProjects, onAction: moveToCompleted },
+            { title: "Completed", projects: completedProjects },
+          ].map(({ title, projects, onAction }) => (
+            <div key={title}>
+              <div className="flex items-center gap-2">
+                <ChevronDown className="w-4 h-4 text-gray-400" />
+                <span className="text-sm font-semibold  text-gray-300">{title}</span>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Pending Projects */}
-        <div>
-          <div className="cursor-pointer flex items-center gap-1">
-            <ChevronDown className="w-[18px] h-[18px]" />
-            <span className="text-sm font-bold">Pending</span>
-          </div>
-          <div className="pl-5 space-y-1">
-            {pendingProjects.map((project) => (
-              <div
-                key={project.name}
-                className="flex items-center gap-1 hover:bg-neutral-800 p-1 rounded cursor-pointer"
-              >
-                <Image alt={project.name} src={project.icon} height={16} width={16} />
-                <span
-                  className="text-sm truncate max-w-[150px] hover:overflow-visible hover:whitespace-normal"
-                  title={project.name}
-                >
-                  {project.name}.tsx
-                </span>
-                <Plus
-                  className="w-[16px] h-[16px] text-gray-400 hover:text-gray-200 ml-auto"
-                  onClick={() => moveToCompleted(project)}
-                />
+              <div className="pl-4 space-y-2">
+                {projects.map((project) => (
+                  <div
+                    key={project.name}
+                    className="flex items-center gap-2 px-2 py-1 bg-neutral-800 rounded-sm hover:bg-neutral-700"
+                  >
+                    <Image
+                      alt={project.name}
+                      src={project.icon}
+                      height={16}
+                      width={16}
+                      className="rounded-full"
+                    />
+                    <span
+                      className="text-sm text-gray-300 truncate max-w-[150px]"
+                      title={project.name}
+                    >
+                      {project.name}.tsx
+                    </span>
+                    {onAction && (
+                      <Plus
+                        className="w-4 h-4 text-gray-400 hover:text-gray-200 ml-auto cursor-pointer"
+                        onClick={() => onAction(project)}
+                      />
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-
-        {/* Completed Projects */}
-        <div>
-          <div className="cursor-pointer flex items-center gap-1">
-            <ChevronDown className="w-[18px] h-[18px]" />
-            <span className="text-sm font-bold">Completed</span>
-          </div>
-          <div className="pl-5 space-y-1">
-            {completedProjects.map((project) => (
-              <div
-                key={project.name}
-                className="flex items-center gap-1 hover:bg-neutral-800 p-1 rounded"
-              >
-                <Image alt={project.name} src={project.icon} height={16} width={16} />
-                <span
-                  className="text-sm truncate max-w-[150px] hover:overflow-visible hover:whitespace-normal"
-                  title={project.name}
-                >
-                  {project.name}.tsx
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-          }
+      )}
     </div>
   );
 };
