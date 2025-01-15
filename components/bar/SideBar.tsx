@@ -17,7 +17,7 @@ const SideBar = () => {
   );
 
   return (
-    <div className="w-44 border-r border-neutral-800 flex flex-col justify-start py-3">
+    <div className={`${itemContext.sideOpen ?  'block' : 'hidden'} w-44 border-r border-neutral-800 flex flex-col justify-start py-3`}>
       {/* Sidebar Header */}
       <span className="px-5 text-sm">
         {itemContext.sideBarItem.toUpperCase()}

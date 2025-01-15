@@ -2,7 +2,7 @@
 
 import { useSideBarContext } from "@/context/SideBarProvider";
 import { Blocks, CircleUserRound, Files, Settings } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 
 const tabs = [
   { id: "explore", icon: Files },
@@ -25,30 +25,39 @@ const tabs = [
 ];
 
 const ActivityBar = () => {
-  const [activeTab, setActiveTab] = useState<string>("explore");
-  const itemContext= useSideBarContext();
+  const itemContext = useSideBarContext();
+
+  function handleclick(id: string) {
+    if (id === itemContext.sideBarItem) {
+      itemContext.setSideOpen((pre)=>!pre)
+    }else{
+      itemContext.setSideBarItem(id);
+      itemContext.setSideOpen(true)
+    } 
+  }
 
   return (
     <div className="w-12 h-full flex flex-col items-center justify-between space-y-2 border-r border-neutral-800">
-        
-        <div className=" w-full">
-      {tabs.map(({ id, icon: Icon }) => (
-        <div
-          key={id}
-          className={`w-full h-12 py-2 flex justify-center items-center ${
-            activeTab === id ? "border-l-2 text-white" : "border-0"
-          } border-blue-600 text-neutral-500 hover:text-white cursor-pointer`}
-          onClick={() => {setActiveTab(id); itemContext.setSideBarItem(id)} }
-        >
-          <Icon className="w-6 h-6" />
-        </div>
-      ))}
+      <div className=" w-full">
+        {tabs.map(({ id, icon: Icon }) => (
+          <div
+            key={id}
+            className={`w-full h-12 py-2 flex justify-center items-center ${
+              itemContext.sideBarItem === id
+                ? "border-l-2 text-white"
+                : "border-0"
+            } border-blue-600 text-neutral-500 hover:text-white cursor-pointer`}
+            onClick={() => handleclick(id)}
+          >
+            <Icon className="w-6 h-6" />
+          </div>
+        ))}
       </div>
 
-        <div className="w-full py-4 space-y-6 flex flex-col justify-center items-center ">
-            <CircleUserRound className="w-6 h-6 text-neutral-500 hover:text-white cursor-pointer"/>
-            <Settings className="w-6 h-6 text-neutral-500 hover:text-white cursor-pointer"/>
-        </div>
+      <div className="w-full py-4 space-y-6 flex flex-col justify-center items-center ">
+        <CircleUserRound className="w-6 h-6 text-neutral-500 hover:text-white cursor-pointer" />
+        <Settings className="w-6 h-6 text-neutral-500 hover:text-white cursor-pointer" />
+      </div>
     </div>
   );
 };

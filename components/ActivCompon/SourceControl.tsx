@@ -1,6 +1,7 @@
 import { Check, ChevronDown, ChevronRight, Plus } from "lucide-react";
 import React, { useState } from "react";
-import Image from "next/image";
+import { FaHtml5, FaJs, FaReact, FaCss3Alt } from "react-icons/fa";
+import { SiNextdotjs } from "react-icons/si";
 
 interface MyComponentProps {
   folderName: string;
@@ -8,7 +9,7 @@ interface MyComponentProps {
 
 interface Project {
   name: string;
-  icon: string;
+  icon: React.ReactNode;
 }
 
 const SourceControl: React.FC<MyComponentProps> = ({ folderName }) => {
@@ -16,17 +17,17 @@ const SourceControl: React.FC<MyComponentProps> = ({ folderName }) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const [ongoingProjects, setOngoingProjects] = useState<Project[]>([
-    { name: "thumbnail", icon: "/image/icons/react_icon.svg" },
+    { name: "thumbnail", icon: <FaReact className="text-blue-400" /> },
   ]);
 
   const [pendingProjects, setPendingProjects] = useState<Project[]>([
-    { name: "blog", icon: "/image/icons/html_icon.svg" },
-    { name: "portfolio", icon: "/image/icons/js_icon.svg" },
+    { name: "blog", icon: <FaHtml5 className="text-orange-500" /> },
+    { name: "portfolio", icon: <FaJs className="text-yellow-500" /> },
   ]);
 
   const [completedProjects, setCompletedProjects] = useState<Project[]>([
-    { name: "ecommerce", icon: "/image/icons/react_icon.svg" },
-    { name: "landing-page", icon: "/image/icons/js_icon.svg" },
+    { name: "ecommerce", icon: <SiNextdotjs className="text-gray-500" /> },
+    { name: "landing-page", icon: <FaCss3Alt className="text-blue-500" />},
   ]);
 
   const handleAdd = () => {
@@ -105,13 +106,14 @@ const SourceControl: React.FC<MyComponentProps> = ({ folderName }) => {
                     key={project.name}
                     className="flex items-center gap-2 px-2 py-1 bg-neutral-800 rounded-sm hover:bg-neutral-700"
                   >
-                    <Image
+                    {/* <Image
                       alt={project.name}
                       src={project.icon}
                       height={16}
                       width={16}
                       className="rounded-full"
-                    />
+                    /> */}
+                    {project.icon}
                     <span
                       className="text-sm text-gray-300 truncate max-w-[150px]"
                       title={project.name}
