@@ -4,6 +4,7 @@ import ActivityBar from "@/components/bar/ActivityBar";
 import TopBar from "@/components/bar/TopBar";
 import SideBar from "@/components/bar/SideBar";
 import { SideBarProvider } from "@/context/SideBarProvider";
+import MainHome from "@/components/portfolio/MainHome";
 
 export default function Home() {
 
@@ -17,6 +18,7 @@ export default function Home() {
         <div className=" flex h-full">
           <ActivityBar />
           <SideBar />
+          <MainHome/>
         </div>
 
         {/*Bottom Bar */}
