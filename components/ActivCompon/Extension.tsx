@@ -27,7 +27,7 @@ const Extension: React.FC<MyComponentProps> = ({ folderName }) => {
         { name: "HTML", icon: <FaHtml5 className="text-orange-500" /> },
         { name: "CSS", icon: <FaCss3Alt className="text-blue-500" /> },
         { name: "JavaScript", icon: <FaJs className="text-yellow-500" /> },
-        { name: "React", icon: <FaReact className="text-blue-400" /> },
+        { name: "React", icon: <FaReact className="text-blue-500" /> },
         { name: "Next.js", icon: <SiNextdotjs className="text-gray-500" /> },
       ],
     },

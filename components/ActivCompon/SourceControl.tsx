@@ -17,7 +17,7 @@ const SourceControl: React.FC<MyComponentProps> = ({ folderName }) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const [ongoingProjects, setOngoingProjects] = useState<Project[]>([
-    { name: "thumbnail", icon: <FaReact className="text-blue-400" /> },
+    { name: "thumbnail", icon: <FaReact className="text-blue-500" /> },
   ]);
 
   const [pendingProjects, setPendingProjects] = useState<Project[]>([
@@ -106,13 +106,6 @@ const SourceControl: React.FC<MyComponentProps> = ({ folderName }) => {
                     key={project.name}
                     className="flex items-center gap-2 px-2 py-1 bg-neutral-800 rounded-sm hover:bg-neutral-700"
                   >
-                    {/* <Image
-                      alt={project.name}
-                      src={project.icon}
-                      height={16}
-                      width={16}
-                      className="rounded-full"
-                    /> */}
                     {project.icon}
                     <span
                       className="text-sm text-gray-300 truncate max-w-[150px]"

@@ -1,8 +1,7 @@
 import { usePortContext } from "@/context/PortfolioProvider";
 import { ChevronDown, ChevronRight } from "lucide-react";
-import Image from "next/image";
 import React, { useState } from "react";
-
+import { FaHtml5, FaJs, FaReact} from "react-icons/fa";
 interface MyComponentProps {
   folderName: string;
 }
@@ -12,9 +11,9 @@ const Explore: React.FC<MyComponentProps> = ({ folderName }) => {
   const portContext = usePortContext();
 
   const files = [
-    { name: "home.html", icon: "/image/icons/html_icon.svg", alt: "HTML" },
-    { name: "project.js", icon: "/image/icons/js_icon.svg", alt: "JavaScript" },
-    { name: "about.jsx", icon: "/image/icons/react_icon.svg", alt: "React" },
+    { name: "home.html", icon: <FaHtml5 className='text-orange-500'/>, alt: "HTML" },
+    { name: "project.js", icon: <FaJs className="text-yellow-500"/>, alt: "JavaScript" },
+    { name: "about.jsx", icon: <FaReact className="text-blue-500"/>, alt: "React" },
   ];
 
   return (
@@ -43,7 +42,7 @@ const Explore: React.FC<MyComponentProps> = ({ folderName }) => {
               onClick={() => portContext.setPortfolioItem(file.name)}
               className={`flex gap-1 items-center cursor-pointer ${file.name === portContext.portfolioItem && 'bg-neutral-800'} hover:bg-neutral-700`}
             >
-              <Image alt={file.alt} src={file.icon} height={18} width={18} />
+              {file.icon}
               <span>{file.name}</span>
             </div>
           ))}
