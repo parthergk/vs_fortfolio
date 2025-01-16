@@ -10,7 +10,7 @@ const SideBar = () => {
   useEffect(() => {
     const handleResize = () => {
       // Automatically close if screen width is below 640px
-      if (window.innerWidth < 640) {
+      if (window.innerWidth < 1024) {
         itemContext.setSideOpen(false);
       }
     };

@@ -3,8 +3,8 @@ import React from "react";
 
 const BottomBar = () => {
   return (
-    <div className=" w-full h-6 flex justify-between items-center border-t border-neutral-800">
-      <div className=" px-10 flex justify-center items-center space-x-2">
+    <div className="px-3 w-full h-6 flex justify-between items-center border-t border-neutral-800">
+      <div className=" flex justify-center items-center space-x-2">
         <svg
           className="w-4 h-4"
           width="24"
@@ -18,7 +18,7 @@ const BottomBar = () => {
         <span className=" font-thin text-sm">main*</span>
       </div>
 
-      <div className="flex space-x-4 justify-center items-center px-3 ">
+      <div className="flex space-x-4 justify-center items-center ">
         {[
           { icon: Braces, label: "TypeScript JSX" },
           { icon: CheckCheck, label: "Prettier" },
