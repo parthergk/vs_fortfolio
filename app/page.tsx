@@ -12,7 +12,7 @@ import About from "@/components/portfolio/About";
 export default function Home() {
   const portContext = usePortContext();
   const items = [
-    {name: 'home', component: <MainHome/>},
+    {name: 'home',  component: <MainHome/>},
     {name: 'project', component: <Project/>},
     {name: 'about', component: <About/>},
   ]
@@ -21,12 +21,12 @@ export default function Home() {
 
   return (
     <SideBarProvider>
-      <div className="h-screen w-full bg-customBlack text-neutral-300 flex flex-col">
+      <div className="h-screen w-full bg-customBlackPri text-neutral-300 flex flex-col">
         {/* Top Bar */}
         <TopBar />
 
         {/*Left side bars */}
-        <div className=" flex h-full">
+        <div className=" flex h-full overflow-y-hidden">
           <ActivityBar />
           <SideBar />
           {activeComp?.component}
