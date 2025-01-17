@@ -31,7 +31,7 @@ const HomePage = () => {
           {/* Hero Section */}
           <div className="space-y-4">
             <h1 className="text-4xl sm:text-6xl font-bold text-white">
-              Hi, I'm {personalInfo.name}
+              Hi, I&apos;m {personalInfo.name}
             </h1>
             <h2 className="text-2xl sm:text-3xl text-purple-400 font-semibold">
               {personalInfo.title}

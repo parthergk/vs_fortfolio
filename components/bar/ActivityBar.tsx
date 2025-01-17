@@ -3,7 +3,7 @@
 import { useSideBarContext } from "@/context/SideBarProvider";
 import { Blocks, CircleUserRound, Files, Settings } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
-import DevCard from "../DevCard";
+import DevCard from "../card/DevCard";
 
 interface Tab {
   id: string;

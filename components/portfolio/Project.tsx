@@ -1,5 +1,6 @@
 import React from 'react'
 import { ExternalLink, Github } from 'lucide-react';
+import Link from 'next/link';
 
 const Project = () => {
   const projects = [
@@ -51,24 +52,24 @@ const Project = () => {
               ))}
             </div>
             <div className="flex gap-3 sm:gap-4 absolute bottom-4 sm:bottom-5">
-              <a
+              <Link
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 sm:gap-2 text-gray-400 hover:text-white transition-colors duration-200"
+                className="flex items-center gap-1.5 sm:gap-2 text-gray-400 hover:text-purple-400  transition-colors duration-200"
               >
                 <Github size={16} className="sm:w-[18px] sm:h-[18px]" />
                 <span className="text-xs sm:text-sm">Code</span>
-              </a>
-              <a
+              </Link>
+              <Link
                 href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 sm:gap-2 text-gray-400 hover:text-white transition-colors duration-200"
+                className="flex items-center gap-1.5 sm:gap-2 text-gray-400 hover:text-purple-400  transition-colors duration-200"
               >
                 <ExternalLink size={16} className="sm:w-[18px] sm:h-[18px]" />
                 <span className="text-xs sm:text-sm">Live Demo</span>
-              </a>
+              </Link>
             </div>
           </div>
         ))}

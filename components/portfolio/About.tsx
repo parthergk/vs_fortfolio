@@ -1,21 +1,22 @@
 import React from 'react';
-import { Code2, Mail, Linkedin, Github, Terminal, Coffee, Globe } from 'lucide-react';
+import { Mail, Linkedin, Github, Terminal, Coffee, Globe } from 'lucide-react';
+import Link from 'next/link';
 
 const About = () => {
-  const skills = [
-    { category: "Frontend", techs: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux"] },
-    { category: "Backend", techs: ["Node.js", "Express", "MongoDB", "PostgreSQL", "REST APIs"] },
-    { category: "Tools & Others", techs: ["Git", "Docker", "AWS", "Jest", "Figma"] }
-  ];
+  // const skills = [
+  //   { category: "Frontend", techs: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux"] },
+  //   { category: "Backend", techs: ["Node.js", "Express", "MongoDB", "PostgreSQL", "REST APIs"] },
+  //   { category: "Tools & Others", techs: ["Git", "Docker", "AWS", "Jest", "Figma"] }
+  // ];
 
   const personalInfo = {
-    name: "John Developer",
-    title: "Full Stack Developer",
-    location: "San Francisco, CA",
-    experience: "4+ years",
-    email: "john@example.com",
-    linkedin: "https://linkedin.com/in/johndeveloper",
-    github: "https://github.com/johndeveloper"
+    name: "Parther Developer",
+    title: "Frontend Developer",
+    location: "Bijnor, UP",
+    experience: "0+ years",
+    email: "parthergk@gmail.com",
+    linkedin: "https://www.linkedin.com/in/gaurav-kumar-b5a76626b",
+    github: "https://github.com/parthergk"
   };
 
   return (
@@ -24,7 +25,7 @@ const About = () => {
         {/* Header Section */}
         <div className="mb-12">
           <h1 className="text-2xl sm:text-4xl font-bold text-white mb-4">
-            Hi, I'm {personalInfo.name} 👋
+            Hi, I&apos;m {personalInfo.name} 👋
           </h1>
           <h2 className="text-xl sm:text-2xl text-purple-400 mb-6">
             {personalInfo.title}
@@ -70,7 +71,7 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-[#2a2a2a] rounded-sm p-4 border border-purple-500/15 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-md hover:shadow-purple-400">
               <div className="flex items-center gap-2 mb-3">
-                <Globe className="text-purple-400" />
+                <Globe className="text-purple-400 " />
                 <h4 className="text-lg text-white">Web Development</h4>
               </div>
               <p className="text-sm text-gray-300">
@@ -96,14 +97,14 @@ const About = () => {
             Get In Touch
           </h3>
           <div className="flex flex-wrap gap-4">
-            <a
+            <Link
               href={`mailto:${personalInfo.email}`}
               className="flex items-center gap-2 text-gray-300 hover:text-purple-400 transition-colors duration-200"
             >
               <Mail size={18} />
               <span className="text-sm">{personalInfo.email}</span>
-            </a>
-            <a
+            </Link>
+            <Link
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
@@ -111,8 +112,8 @@ const About = () => {
             >
               <Linkedin size={18} />
               <span className="text-sm">LinkedIn</span>
-            </a>
-            <a
+            </Link>
+            <Link
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
@@ -120,7 +121,7 @@ const About = () => {
             >
               <Github size={18} />
               <span className="text-sm">GitHub</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

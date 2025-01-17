@@ -17,7 +17,7 @@ const DevCard: React.FC<DevCardProps> = ({ devref }) => {
             <Code className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h3 className="text-neutral-100 font-semibold">John Doe</h3>
+            <h3 className="text-neutral-100 font-semibold">Parther</h3>
             <p className="text-sm text-purple-400">Frontend Developer</p>
           </div>
         </div>
