@@ -34,7 +34,7 @@ const MainHome = () => {
           </p>
           <Link
             href="/path-to-resume.pdf"
-            className="self-start md:self-end mt-5  inline-flex items-center gap-2 bg-[#2a2a2a] hover:bg-[#333333] text-white px-6 py-1 rounded-sm transition-all duration-300 hover:shadow-md hover:shadow-blue-500/50  border border-purple-500/15"
+            className="self-start md:self-end mt-5  inline-flex items-center gap-2 bg-[#2a2a2a] hover:bg-[#333333] text-white px-6 py-1 rounded-sm transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-md hover:shadow-purple-400  border border-purple-500/15"
           >
             Download CV
             <Download size={18} />

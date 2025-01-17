@@ -68,7 +68,7 @@ const About = () => {
             What I Do
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-[#2a2a2a] rounded-sm p-4 border border-purple-500/15">
+            <div className="bg-[#2a2a2a] rounded-sm p-4 border border-purple-500/15 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-md hover:shadow-purple-400">
               <div className="flex items-center gap-2 mb-3">
                 <Globe className="text-purple-400" />
                 <h4 className="text-lg text-white">Web Development</h4>
@@ -77,7 +77,7 @@ const About = () => {
                 Building responsive, performant web applications with modern technologies and best practices.
               </p>
             </div>
-            <div className="bg-[#2a2a2a] rounded-sm p-4 border border-purple-500/15">
+            <div className="bg-[#2a2a2a] rounded-sm p-4 border border-purple-500/15 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-md hover:shadow-purple-400">
               <div className="flex items-center gap-2 mb-3">
                 <Coffee className="text-purple-400" />
                 <h4 className="text-lg text-white">Problem Solving</h4>
