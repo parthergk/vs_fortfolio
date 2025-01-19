@@ -32,3 +32,29 @@ body {
       scrollbar-width: none;  /* Firefox */
 }
 }
+
+/* Custom Scrollbar Styles */
+.custom-scrollbar {
+  overflow-y: scroll;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #4f46e5 #1f1f1f; /* For Firefox */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1f1f1f; /* Background of the track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #4f46e5; /* Scrollbar thumb color */
+  border-radius: 10px; /* Rounded corners */
+  border: 2px solid transparent; /* Padding inside */
+  background-clip: content-box; /* Clip padding */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #6366f1; /* Thumb color on hover */
+}

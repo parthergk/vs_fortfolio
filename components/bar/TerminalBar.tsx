@@ -40,7 +40,7 @@ const TerminalBar = () => {
   }, [messages]);
 
   return (
-    <div className="w-full h-[7rem] px-3 py-2 absolute bottom-0 border-t border-neutral-800 bg-customBlackPri z-20 ">
+    <div className="w-full h-[10rem] md:h-[7rem] px-3 py-2 absolute bottom-0 border-t border-neutral-800 bg-customBlackPri z-20 ">
       <div className="w-full flex justify-between items-center">
         <span className="text-sm border-b border-blue-600">CHAT WITH ME</span>
         <button className="hover:text-red-500 transition-colors">
@@ -50,7 +50,7 @@ const TerminalBar = () => {
 
         {/* <div className=" flex flex-col"> */}
         {/* Chat Messages */}
-        <div className="w-full max-h-[3.5rem] mt-2 overflow-y-scroll text-white text-sm" ref={chatContainerRef}>
+        <div className="w-full max-h-[6.2rem] md:max-h-[3.5rem] mt-2 overflow-y-scroll text-white text-sm custom-scrollbar" ref={chatContainerRef}>
           {messages.length === 0 ? (
             <p className="text-neutral-500">Start a conversation...</p>
           ) : (
