@@ -20,7 +20,7 @@ const About = () => {
   };
 
   return (
-    <div className="w-full bg-customBlackSec p-3 md:p-8 overflow-y-scroll no-scrollbar">
+    <div className="w-full h-full bg-customBlackSec p-3 md:p-8 overflow-y-scroll no-scrollbar">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <div className="mb-12">

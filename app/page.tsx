@@ -8,6 +8,7 @@ import MainHome from "@/components/portfolio/MainHome";
 import { usePortContext } from "@/context/PortfolioProvider";
 import Project from "@/components/portfolio/Project";
 import About from "@/components/portfolio/About";
+import TerminalBar from "@/components/bar/TerminalBar";
 
 export default function Home() {
   const portContext = usePortContext();
@@ -29,7 +30,10 @@ export default function Home() {
         <div className=" flex h-full overflow-y-hidden">
           <ActivityBar />
           <SideBar />
+          <div className=" w-full h-full relative">
+          <TerminalBar/>
           {activeComp?.component}
+          </div>
         </div>
 
         {/*Bottom Bar */}

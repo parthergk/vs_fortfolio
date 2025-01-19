@@ -5,7 +5,7 @@ import React from "react";
 
 const MainHome = () => {
   return (
-    <div className=" bg-customBlackSec w-full grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-5 p-3 ">
+    <div className=" h-full bg-customBlackSec w-full grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-5 p-3 ">
       {/* Name Section */}
       <div className="pl-8 md:pl-20 flex justify-center md:justify-start items-end">
         <h1 className="text-6xl md:text-7xl font-medium md:font-bold tracking-tight">
