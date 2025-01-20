@@ -10,6 +10,11 @@ interface Tab {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
+type ChildProps = {
+  setOnTerminal: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+
 const tabs: Tab[] = [
   { id: "explore", icon: Files },
   {
@@ -30,12 +35,16 @@ const tabs: Tab[] = [
   { id: "extension", icon: Blocks },
 ];
 
-const ActivityBar: React.FC = () => {
+const ActivityBar: React.FC<ChildProps> = ({setOnTerminal}) => {
   const itemContext = useSideBarContext();
 
   const [showDevCard, setShowDevCard] = useState(false); // State to track visibility
   const devCardRef = useRef<HTMLDivElement | null>(null);  // Ref for DevCard
   const circleButtonRef = useRef<SVGSVGElement | null>(null);  // Ref for CircleUserRound button
+
+  const toggleTerminal = ()=>{
+    setOnTerminal((pre)=> !pre)
+  } 
 
   const toggleDevCard = () => {
     setShowDevCard((prev) => !prev); // Toggle the visibility of the DevCard
@@ -97,7 +106,11 @@ const ActivityBar: React.FC = () => {
           className="w-6 h-6 text-neutral-500 hover:text-white cursor-pointer"
           onClick={toggleDevCard}  // Toggle DevCard visibility on click
         />
-        <Settings className="w-6 h-6 text-neutral-500 hover:text-white cursor-pointer" />
+
+        <Settings 
+          className="w-6 h-6 text-neutral-500 hover:text-white cursor-pointer"
+          onClick={toggleTerminal}
+        />
 
         {/* Conditionally render the DevCard based on the state */}
         {showDevCard && <DevCard devref={devCardRef} />}

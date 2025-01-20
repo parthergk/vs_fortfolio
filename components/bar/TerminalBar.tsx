@@ -6,7 +6,11 @@ interface Message {
   text: string;
 }
 
-const TerminalBar: React.FC = () => {
+interface ChildInterface {
+  setOnTerminal: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const TerminalBar: React.FC <ChildInterface> = ({setOnTerminal}) => {
   const [message, setMessage] = useState<string>(""); // User input message
   const [messages, setMessages] = useState<Message[]>([]); // All chat messages
   const [isTyping, setIsTyping] = useState<boolean>(false); // To track if the bot is typing
@@ -21,7 +25,7 @@ const TerminalBar: React.FC = () => {
     const newMessages = [...messages,{ sender: "YOU R:you_typing>", text: message },];
 
     setMessages(newMessages);
-    setMessages([...newMessages,{ sender: "ME P:me_typing>", text: '.....'},]);
+    setMessages([...newMessages,{ sender: "ME P:me_typing>", text: ' ...'},]);
 
     setIsTyping(true); // Start typing indicator
 
@@ -69,7 +73,7 @@ const TerminalBar: React.FC = () => {
     <div className="w-full h-[10rem] md:h-[7rem] px-3 py-2 absolute bottom-0 border-t border-neutral-800 bg-customBlackPri z-20">
       <div className="w-full flex justify-between items-center">
         <span className="text-sm border-b border-blue-600">CHAT WITH ME</span>
-        <button className="hover:text-red-500 transition-colors">
+        <button className="hover:text-red-500 transition-colors" onClick={()=>setOnTerminal((pre)=>!pre)}>
           <X size={18} />
         </button>
       </div>

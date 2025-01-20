@@ -40,7 +40,7 @@ const Explore: React.FC<MyComponentProps> = ({ folderName }) => {
             <div
               key={file.name}
               onClick={() => portContext.setPortfolioItem(file.name)}
-              className={`flex gap-1 items-center cursor-pointer ${file.name === portContext.portfolioItem && 'bg-neutral-800'} hover:bg-neutral-700`}
+              className={`flex gap-1 items-center cursor-pointer px-1 ${file.name === portContext.portfolioItem && 'bg-neutral-800'} hover:bg-neutral-700`}
             >
               {file.icon}
               <span>{file.name}</span>
