@@ -3,7 +3,7 @@ import "./globals.css";
 import { PortfolioProvider } from "@/context/PortfolioProvider";
 
 export const metadata: Metadata = {
-  title: "Gaurav Kumar | Developer Portfolio",
+  title: "Parther | Developer Portfolio",
   description: "Showcasing my journey as a frontend developer, projects, and skills.",
 };
 
