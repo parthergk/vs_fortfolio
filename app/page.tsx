@@ -33,7 +33,7 @@ export default function Home() {
         <div className=" flex h-full overflow-y-hidden">
           <ActivityBar setOnTerminal= {setOnTerminal} />
           <SideBar />
-          <div className=" w-full h-full relative overflow-x-hidden">
+          <div className=" w-full h-full relative overflow-hidden">
           {onTerminal && <TerminalBar setOnTerminal={setOnTerminal} />}
           {activeComp?.component}
           </div>
