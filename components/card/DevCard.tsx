@@ -8,7 +8,7 @@ const DevCard: React.FC<DevCardProps> = ({ devref }) => {
   return (
     <div
       ref={devref}
-      className="w-72 h-36 fixed bottom-[5rem] left-12 bg-neutral-800 rounded-lg flex flex-col p-4 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 cursor-pointer group"
+      className="w-72 h-36 fixed bottom-[5rem] left-12 z-30 bg-neutral-800 rounded-lg flex flex-col p-4 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 cursor-pointer group"
     >
       {/* Header with Dev Info */}
       <div className="flex justify-between items-start mb-2">
