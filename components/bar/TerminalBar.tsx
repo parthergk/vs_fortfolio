@@ -7,31 +7,31 @@ interface Message {
 }
 
 const TerminalBar: React.FC = () => {
-  const [message, setMessage] = useState<string>("");
-  const [messages, setMessages] = useState<Message[]>([]);
-  const chatContainerRef = useRef<HTMLDivElement>(null);
+  const [message, setMessage] = useState<string>(""); // User input message
+  const [messages, setMessages] = useState<Message[]>([]); // All chat messages
+  const [isTyping, setIsTyping] = useState<boolean>(false); // To track if the bot is typing
+  const chatContainerRef = useRef<HTMLDivElement>(null); // For scrolling the chat container
 
   // Handle user message submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!message.trim()) return;
+    if (!message.trim() || isTyping) return; // Prevent submission if the bot is typing
 
     // Add user message to the chat
-    const newMessages = [
-      ...messages,
-      { sender: "YOU R:you_typing>", text: message },
-    ];
+    const newMessages = [...messages,{ sender: "YOU R:you_typing>", text: message },];
+
     setMessages(newMessages);
+    setMessages([...newMessages,{ sender: "ME P:me_typing>", text: '.....'},]);
+
+    setIsTyping(true); // Start typing indicator
 
     // Get bot response
     const botResponse = await getBotResponse(message);
 
     // Add bot response to the chat
-    setMessages([
-      ...newMessages,
-      { sender: "ME P:me_typing>", text: botResponse },
-    ]);
+    setMessages([...newMessages,{ sender: "ME P:me_typing>", text: botResponse },]);
     setMessage("");
+    setIsTyping(false); // Stop typing indicator once the bot responds
   };
 
   // Get response from the backend API
@@ -48,7 +48,9 @@ const TerminalBar: React.FC = () => {
       const data = await response.json();
 
       // Ensure the response is a string
-      return typeof data.reply === 'string' ? data.reply : "Sorry, something went wrong!";
+      return typeof data.reply === "string"
+        ? data.reply
+        : "Sorry, something went wrong!";
     } catch (error) {
       console.error("Error fetching bot response:", error);
       return "Sorry, something went wrong!";
@@ -58,7 +60,8 @@ const TerminalBar: React.FC = () => {
   // Scroll to the bottom of chat when new messages arrive
   useEffect(() => {
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
     }
   }, [messages]);
 
@@ -76,9 +79,7 @@ const TerminalBar: React.FC = () => {
         className="w-full max-h-[6.2rem] md:max-h-[3.5rem] mt-2 overflow-y-scroll text-white text-sm custom-scrollbar"
         ref={chatContainerRef}
       >
-        {messages.length === 0 ? (
-          <p className="text-neutral-500">Start a conversation...</p>
-        ) : (
+        {messages.length !== 0 &&
           messages.map((msg, index) => (
             <div key={index} className="mb-2">
               <span
@@ -88,12 +89,11 @@ const TerminalBar: React.FC = () => {
                     : "text-blue-500"
                 }`}
               >
-                {msg.sender}:
+                {msg.sender}
               </span>{" "}
               <span>{msg.text}</span>
             </div>
-          ))
-        )}
+          ))}
       </div>
 
       {/* Input Form */}
@@ -107,6 +107,7 @@ const TerminalBar: React.FC = () => {
           onChange={(e) => setMessage(e.target.value)}
           className="w-full bg-transparent outline-none text-sm text-white ml-1"
           autoFocus
+          disabled={isTyping} // Disable input while waiting for the bot's response
         />
       </form>
     </div>
