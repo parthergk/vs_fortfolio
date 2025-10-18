@@ -112,7 +112,6 @@ const ActivityBar: React.FC<ChildProps> = ({setOnTerminal}) => {
           onClick={toggleTerminal}
         />
 
-        {/* Conditionally render the DevCard based on the state */}
         {showDevCard && <DevCard devref={devCardRef} />}
       </div>
     </div>
